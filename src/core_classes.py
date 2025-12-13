@@ -4,7 +4,7 @@ class Product:
     price: float
     quantity: int
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.price = price
@@ -18,7 +18,7 @@ class Category:
     product_count: int = 0
     category_count: int = 0
 
-    def __init__(self, name, description, products):
+    def __init__(self, name: str, description: str, products: list[Product]):
         self.name = name
         self.description = description
         self.products = products if products else []
