@@ -14,7 +14,7 @@ def test_read_json(tmp_path: Path) -> None:
     assert read_json(str(test_file)) == {"test": "test"}
 
 
-def test_read_json_file(prod_test_dict: list) -> None:
+def test_create_objects_from_json(prod_test_dict: list) -> None:
     ob = create_objects_from_json(prod_test_dict)
     assert ob[0].name == "t1"
     assert ob[1].name == "t2"
