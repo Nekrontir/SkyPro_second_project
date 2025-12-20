@@ -27,7 +27,7 @@ def test_category2(category2: Category) -> None:
 
 
 def test_category3(category2: Category) -> None:
-    assert category2.products == '55" QLED 4K, 123000.0. Остаток: 7\n'
+    assert category2.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'
 
 
 def test_product_creation_and_price_setter(product1: Product, capsys: CaptureFixture[str]) -> None:
