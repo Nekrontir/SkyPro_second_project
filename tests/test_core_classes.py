@@ -12,11 +12,19 @@ def test_product1(product1: Product) -> None:
     assert product1.quantity == 5
 
 
+def test_product2() -> None:
+    prod1 = Product("t", "tt", 100.0, 10)
+    prod2 = Product("tt", "rr", 200.0, 5)
+    assert prod1 + prod2 == 2000
+    assert str(prod1) == "t, 100.0 руб. Остаток: 10 шт."
+
+
 def test_category1(category1: Category) -> None:
     assert category1.name == "Смартфоны"
     assert category1.description == "Смартфоны - удобство для жизни"
     assert category1.product_count == 3
     assert category1.category_count == 1
+    assert str(category1) == "Смартфоны, количество продуктов: 27 шт."
 
 
 def test_category2(category2: Category) -> None:
