@@ -1,4 +1,5 @@
 from src.core_classes import Category
+from src.product_classes import LawnGrass, Smartphone
 
 if __name__ == "__main__":
     smartphone1 = Smartphone(
