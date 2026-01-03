@@ -1,6 +1,7 @@
 import pytest
 
 from src.core_classes import Category, Product
+from src.product_classes import LawnGrass, Smartphone
 
 
 @pytest.fixture(autouse=True)
@@ -47,3 +48,13 @@ def prod_test_dict() -> list:
             "products": [{"name": "pr4", "description": "pr4", "price": 4.01, "quantity": 1}],
         },
     ]
+
+
+@pytest.fixture
+def smartphone1() -> Smartphone:
+    return Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+
+
+@pytest.fixture
+def lawn_grass1() -> LawnGrass:
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
