@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+import pytest
 from _pytest.capture import CaptureFixture
 
 from src.core_classes import Category, Product
@@ -90,3 +91,5 @@ def test_creation() -> None:
     assert p2 in Product.all_products
     assert p1.name in category.products
     assert p2.name in category.products
+    with pytest.raises(TypeError):
+        category.add_product("Not_product")
