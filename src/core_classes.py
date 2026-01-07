@@ -1,7 +1,13 @@
+from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Union
 
-from src.base_product_class import BaseProduct
 from src.mixin_class import MixinInfoProduct
+
+
+class BaseProduct(ABC):
+    @property
+    @abstractmethod
+    def price(self) -> float: ...
 
 
 class Product(BaseProduct, MixinInfoProduct):
