@@ -7,7 +7,8 @@ from src.mixin_class import MixinInfoProduct
 class BaseProduct(ABC):
     @property
     @abstractmethod
-    def price(self) -> float: ...
+    def price(self) -> float:
+        pass
 
 
 class Product(BaseProduct, MixinInfoProduct):
