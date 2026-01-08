@@ -1,7 +1,17 @@
+from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Union
 
+from src.mixin_class import MixinInfoProduct
 
-class Product:
+
+class BaseProduct(ABC):
+    @property
+    @abstractmethod
+    def price(self) -> float:
+        pass
+
+
+class Product(BaseProduct, MixinInfoProduct):
     """
     Класс для представления товара в магазине.
     """
@@ -12,10 +22,12 @@ class Product:
     all_products: list = []
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
         Product.all_products.append(self)
 
     @classmethod
@@ -96,3 +108,8 @@ class Category:
         for product in self.__products:
             total_number += product.quantity
         return f"{self.name}, количество продуктов: {total_number} шт."
+
+
+if __name__ == "__main__":
+    print(Product.__mro__)
+    t_obj = Product("t", "tt", 3.0, 100)
