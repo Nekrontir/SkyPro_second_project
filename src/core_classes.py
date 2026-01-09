@@ -105,7 +105,7 @@ class Category:
 
     def middle_price(self) -> float:
         try:
-            total_price = 0
+            total_price: float = 0
             for product in self.__products:
                 total_price += product.price
             return round(float(total_price / Category.product_count), 2)
