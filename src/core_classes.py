@@ -22,11 +22,12 @@ class Product(BaseProduct, MixinInfoProduct):
     all_products: list = []
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
-
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
         Product.all_products.append(self)
 
@@ -65,7 +66,6 @@ class Product(BaseProduct, MixinInfoProduct):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: Any) -> Any:
-        # if type(other) == type(self):
         if isinstance(self, type(other)):
             return self.__price * self.quantity + other.price * other.quantity
         else:
@@ -103,13 +103,17 @@ class Category:
         else:
             raise TypeError
 
+    def middle_price(self) -> float:
+        try:
+            total_price = 0
+            for product in self.__products:
+                total_price += product.price
+            return round(float(total_price / Category.product_count), 2)
+        except ZeroDivisionError:
+            return 0
+
     def __str__(self) -> str:
         total_number: int = 0
         for product in self.__products:
             total_number += product.quantity
         return f"{self.name}, количество продуктов: {total_number} шт."
-
-
-if __name__ == "__main__":
-    print(Product.__mro__)
-    t_obj = Product("t", "tt", 3.0, 100)
