@@ -13,6 +13,13 @@ def test_product1(product1: Product) -> None:
     assert product1.quantity == 5
 
 
+def test_raise_error_init_product(capsys: CaptureFixture[str]) -> None:
+    with pytest.raises(ValueError):
+        Product("t", "tt", 100.0, 0)
+        captured = capsys.readouterr()
+        assert captured.out == "Товар с нулевым количеством не может быть добавлен"
+
+
 def test_product2() -> None:
     prod1 = Product("t", "tt", 100.0, 10)
     prod2 = Product("tt", "rr", 200.0, 5)
@@ -80,6 +87,8 @@ def test_category_with_edge_cases() -> None:
     assert cat1.products == ""
     cat2 = Category("None", "Desc", [])
     assert cat2.products == ""
+    assert cat1.middle_price() == 0
+    assert cat2.middle_price() == 0
 
 
 def test_creation() -> None:
@@ -91,5 +100,6 @@ def test_creation() -> None:
     assert p2 in Product.all_products
     assert p1.name in category.products
     assert p2.name in category.products
+    assert category.middle_price() == 150.0
     with pytest.raises(TypeError):
         category.add_product("Not_product")
